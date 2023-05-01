@@ -13,6 +13,12 @@ class TicTacToe
     @victory = false
   end
 
+  def check_marker(player1, player2)
+    if player1.marker.downcase == player2.marker.downcase
+      puts "Invalid selection, choose another marker."
+    end
+  end
+
   def choose_move(player, board)
     puts "#{player.name}, where will you place your marker?"
     @move = gets.chomp
@@ -76,12 +82,19 @@ player2 = Player.new
 board = GameBoard.new
 game = TicTacToe.new(player1, player2, board)
 
-until game.victory == true
+loop do
   board.display_board
   game.choose_move(player1, board)
   game.victory?(player1, board)
+  if game.victory == true
+    board.display_board
+    break
+  end
   # binding.pry
   board.display_board
   game.choose_move(player2, board)
   game.victory?(player2, board)
+  if game.victory == true
+    break
+  end
 end
