@@ -1,9 +1,10 @@
-class Player
+class Player < GameBoard
   attr_accessor :name, :marker
 
   @@count = 0
 
   def initialize
+    super
     @@count += 1
     puts "What is your name player #{@@count}?"
     @name = gets.chomp

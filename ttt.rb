@@ -2,13 +2,15 @@
 require_relative 'game_board'
 require_relative 'player'
 
-class TicTacToe(player1, player2)
+class TicTacToe
   attr_reader :player1, :player2
+  
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
   end
 end
+
 
 
 board = GameBoard.new
