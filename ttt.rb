@@ -1,4 +1,7 @@
+# require 'pry-byebug'
 require_relative 'game_board'
-board = GameBoard.new
+require_relative 'player'
 
-board.display_board
+board = GameBoard.new
+player1 = Player.new
+player2 = Player.new
