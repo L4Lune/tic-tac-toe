@@ -43,10 +43,6 @@ class TicTacToe
       board.nine = player.marker
     end
   end
-  
-  def move_is_valid?(player1, player2, board)
-
-  end
 
   def victory?(player, board)
     if (board.one == player.marker) && (board.two == player.marker) && (board.three == player.marker)
