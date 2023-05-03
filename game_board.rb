@@ -14,15 +14,20 @@ class GameBoard
     @nine = 9
   end
 
+  def create_board
+    Array.new(3) { Array.new(3) }
+  end
+  
   def place_marker(player, position)
     validate_move(position)
-    @board[position.row][position.column] = player.marker
+    @game_board[position.row][position.column] = player.marker
   end
 
   def validate_move(position)
     current_position = get_position(position)
     unless current_position.nil?
       raise PositionOccupiedException.new(position, current_position)
+    end
   end
 
   def display_board
