@@ -14,13 +14,9 @@ class GameBoard
     @nine = 9
   end
 
-  def create_board_array
-    Array.new(3) { Array.new(3) }
-  end
-
   def place_marker(player, position)
     validate_move(position)
-    @board[position.row][position.column] = position
+    @board[position.row][position.column] = player.marker
   end
 
   def validate_move(position)
@@ -33,7 +29,7 @@ class GameBoard
     puts '|=====================|'
     puts '|=====TIC TAC TOE=====|'
     puts '|=====================|'
-    puts "       #{game_board} | #{two} | #{three} "
+    puts "       #{game_board[0][0]} | #{two} | #{three} "
     puts '      ---+---+---'
     puts "       #{four} | #{five} | #{six} "
     puts '      ---+---+---'
