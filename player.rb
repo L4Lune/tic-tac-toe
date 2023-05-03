@@ -1,19 +1,12 @@
 class Player
-  attr_accessor :name, :marker
+  attr_reader :name, :marker
 
   @@count = 0
 
   def initialize
     @@count += 1
 
-    puts "What is your name player #{@@count}?"
-    @name = gets.chomp
-    puts "#{name}, what marker will you use? X or O"
-    @marker = gets.chomp
-  end
-
-  def get_move
-    puts "#{name}, what position will you place your marker?"
-    gets.chomp
+    @name = name
+    @marker = marker
   end
 end
