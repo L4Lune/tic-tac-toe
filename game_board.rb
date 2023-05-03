@@ -2,7 +2,7 @@ class GameBoard
   attr_accessor :one, :two, :three, :four, :five, :six, :seven, :eight, :nine, :game_board
 
   def initialize
-    @game_board = Array.new(3) { Array.new(3) }
+    # @game_board = nil
     @one = 1
     @two = 2
     @three = 3
@@ -15,19 +15,20 @@ class GameBoard
   end
 
   def create_board
-    Array.new(3) { Array.new(3) }
-  end
-  
-  def place_marker(player, position)
-    validate_move(position)
-    @game_board[position.row][position.column] = player.marker
+    @game_board = Array.new(3) { Array.new(3) }
   end
 
-  def validate_move(position)
-    current_position = get_position(position)
-    unless current_position.nil?
-      raise PositionOccupiedException.new(position, current_position)
-    end
+  def create_position_array(position)
+    position_array = position.split('')
+    xy_coords = position_array.each_slice(1).to_a
+    @row = position_array[0].to_i
+    @column = position_array[1].to_i
+  end
+
+  def place_marker(marker)
+    # create_position_array
+    # validate_move(position)
+    @game_board[@row][@column] = marker
   end
 
   def display_board

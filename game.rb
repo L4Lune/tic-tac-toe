@@ -1,6 +1,5 @@
 require 'pry-byebug'
-require_relative 'game_board'
-require_relative 'player'
+
 
 class Game
   attr_reader :player1, :player2, :board, :current_player
@@ -34,5 +33,24 @@ class Game
   def play
     player1 = create_player(1)
     player2 = create_player(2, player1.marker)
+    board.create_board
+
+    loop do
+      board.display_board
+      player1.get_position(player1.name)
+      board.place_marker(player1.marker)
+      board.display_board
+      # game.choose_move(player1, board)
+      game.victory?(player1, board)
+      if game.victory == true
+        board.display_board
+        break
+      end
+      # binding.pry
+      board.display_board
+      game.choose_move(player2, board)
+      game.victory?(player2, board)
+      break if game.victory == true
+    end
   end
 end
