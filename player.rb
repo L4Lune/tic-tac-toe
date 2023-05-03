@@ -1,4 +1,4 @@
-class Player < GameBoard
+class Player
   attr_accessor :name, :marker
 
   @@count = 0
