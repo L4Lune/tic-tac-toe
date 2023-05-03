@@ -2,19 +2,21 @@ require 'pry-byebug'
 require_relative 'game_board'
 require_relative 'player'
 
-class TicTacToe
+class Game
   attr_reader :player1, :player2
   attr_accessor :board, :victory
   
   def initialize(player1, player2, board)
     @player1 = player1
     @player2 = player2
-    @board = board
+    @board = GameBoard.new
     @victory = false
   end
 
   def check_marker(player1, player2)
-    if player1.marker.downcase == player2.marker.downcase
+    begin
+      player1.marker.downcase == player2.marker.downcase
+    rescue
       puts "Invalid selection, choose another marker."
     end
   end
@@ -78,19 +80,21 @@ player2 = Player.new
 board = GameBoard.new
 game = TicTacToe.new(player1, player2, board)
 
-loop do
-  board.display_board
-  game.choose_move(player1, board)
-  game.victory?(player1, board)
-  if game.victory == true
-    board.display_board
-    break
-  end
+# loop do
+#   # binding.pry
+#   board.display_board
+#   game.choose_move(player1, board)
+#   game.victory?(player1, board)
+#   if game.victory == true
+#     board.display_board
+#     break
+#   end
   # binding.pry
+  board.create_board
   board.display_board
-  game.choose_move(player2, board)
+  board.place_marker
   game.victory?(player2, board)
-  if game.victory == true
-    break
-  end
-end
+  # if game.victory == true
+  #   break
+  # end
+# end
