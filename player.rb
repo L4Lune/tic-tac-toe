@@ -11,4 +11,9 @@ class Player
     puts "#{name}, what marker will you use? X or O"
     @marker = gets.chomp
   end
+
+  def get_move
+    puts "#{name}, what position will you place your marker?"
+    gets.chomp
+  end
 end
