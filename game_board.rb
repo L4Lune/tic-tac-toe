@@ -12,7 +12,7 @@ class GameBoard
   end
 
   def create_coord_array(coords)
-    coord_array = position.split('')
+    coord_array = coords.split('')
     xy_coords = coord_array.each_slice(1).to_a
     @row = coord_array[0].to_i
     @column = coord_array[1].to_i
@@ -24,9 +24,9 @@ class GameBoard
     position = gets.chomp
   end
 
-  def place_marker(name, position, marker)
-    create_position_array(position)
-    move_is_valid?(name, position, marker)
+  def place_marker(name, coords, marker)
+    create_coord_array(coords)
+    move_is_valid?(name, coords, marker)
     @game_board[@row][@column] = marker
   end
 
@@ -42,17 +42,17 @@ class GameBoard
     puts "   2    #{@game_board[2][0]} | #{@game_board[2][1]} | #{@game_board[2][2]} "
   end
 
-  def move_is_valid?(name, position, marker)
+  def move_is_valid?(name, coord, marker)
     placed_move = false
     while placed_move == false
-      create_position_array(position)
+      create_coord_array(coords)
       if @game_board[@row][@column].nil?
         position
         placed_move = true
       elsif game_board[@row][@column] = marker
         puts "This space is occupied. Select another location."
         get_position(name)
-        place_marker(name, position, marker)
+        place_marker(name, coords, marker)
       end
     end
   end
