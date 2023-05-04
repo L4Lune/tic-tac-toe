@@ -11,11 +11,11 @@ class GameBoard
     @game_board = Array.new(3) { Array.new(3) }
   end
 
-  def create_position_array(position)
-    position_array = position.split('')
-    xy_coords = position_array.each_slice(1).to_a
-    @row = position_array[0].to_i
-    @column = position_array[1].to_i
+  def create_coord_array(coords)
+    coord_array = position.split('')
+    xy_coords = coord_array.each_slice(1).to_a
+    @row = coord_array[0].to_i
+    @column = coord_array[1].to_i
   end
 
   def get_position(name)
