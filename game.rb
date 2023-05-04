@@ -27,30 +27,30 @@ class Game
     else
       return input if input != dup_marker
     end
-
   end
 
   def play
     player1 = create_player(1)
     player2 = create_player(2, player1.marker)
+    # binding.pry
     board.create_board
 
     loop do
+      # binding.pry
       board.display_board
       player1.get_position(player1.name)
-      board.place_marker(player1.marker)
+      board.place_marker(player1.position, player1.marker)
       board.display_board
-      # game.choose_move(player1, board)
-      game.victory?(player1, board)
-      if game.victory == true
+      board.victory?(player1.name, player1.marker)
+      if board.victory == true
         board.display_board
         break
       end
-      # binding.pry
       board.display_board
-      game.choose_move(player2, board)
-      game.victory?(player2, board)
-      break if game.victory == true
+      player2.get_position(player2.name)
+      board.place_marker(player2.position, player2.marker)
+      board.victory?(player2.name, player2.marker)
+      break if board.victory == true
     end
   end
 end

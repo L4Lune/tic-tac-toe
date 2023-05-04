@@ -1,13 +1,14 @@
 class Player
-  attr_reader :name, :marker
+  attr_reader :name, :marker, :position
 
   def initialize(name, marker)
     @name = name
     @marker = marker
+    @position = nil
   end
 
   def get_position(name)
     puts "Where will you place your marker #{name}?"
-    gets.chomp.to_i
+    @position = gets.chomp
   end 
 end
