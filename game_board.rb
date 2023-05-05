@@ -28,21 +28,28 @@ class GameBoard
     puts "   1    #{@game_board[1][0]} | #{@game_board[1][1]} | #{@game_board[1][2]} "
     puts '      ---+---+---'
     puts "   2    #{@game_board[2][0]} | #{@game_board[2][1]} | #{@game_board[2][2]} "
+    puts ''
   end
 
   def get_position(name)
-    puts "Where will you place your marker #{name}?"
-    puts 'Select a location using the axis coordinates. For example 00, 01, 10, 21, 22.'
+    puts "Where will you place your marker #{name}?\n"
+    puts "Select a location using the axis coordinates. For example 00, 01, 10, 21, 22.\n"
     @position = gets.chomp
   end
 
   def place_marker(name, coords, marker)
     create_coord_array(coords)
-    move_is_valid?(name, coords, marker)
     @game_board[@row][@column] = marker
   end
 
-  def move_is_valid?(name, coords, marker)
+  def validate_move(coords, marker1, marker2)
+    create_coord_array(coords)
+    if game_board[@row][@column].nil?
+      return true
+    elsif game_board[@row][@column] == marker1 || game_board[@row][@column] == marker2
+      puts "That space is occupied, please select another location.\n"
+      return false
+    end
 
   end
 

@@ -36,9 +36,16 @@ class Game
     board.create_board
 
     loop do
-     binding.pry
+    #  binding.pry
       board.display_board
-      board.get_position(player1.name)
+      begin
+        board.get_position(player1.name)
+        if board.validate_move(board.position, player1.marker, player2.marker) == false
+          raise 
+        end
+      rescue 
+        retry
+      end
       board.place_marker(player1.name, board.position, player1.marker)
       board.display_board
       board.victory?(player1.name, player1.marker)
@@ -47,7 +54,14 @@ class Game
         break
       end
       # binding.pry
-      board.get_position(player2.name)
+      begin
+        board.get_position(player2.name)
+        if board.validate_move(board.position, player2.marker, player1.marker) == false
+          raise  
+        end
+      rescue 
+        retry
+      end
       board.place_marker(player2.name, board.position, player2.marker)
       board.victory?(player2.name, player2.marker)
       break if board.victory == true
