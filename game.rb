@@ -64,7 +64,10 @@ class Game
       end
       board.place_marker(player2.name, board.position, player2.marker)
       board.victory?(player2.name, player2.marker)
-      break if board.victory == true
+      if board.victory == true
+        board.display_board
+        break
+      end
     end
   end
 end

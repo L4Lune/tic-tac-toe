@@ -1,6 +1,8 @@
 class GameBoard
   attr_accessor :game_board, :victory, :position
 
+  VALID_MOVES = ["00", "01", "02", "10", "11", "12", "20", "21", "22"]
+
   def initialize
     @game_board = []
     @victory = false
@@ -32,8 +34,8 @@ class GameBoard
   end
 
   def get_position(name)
-    puts "Where will you place your marker #{name}?\n"
-    puts "Select a location using the axis coordinates. For example 00, 01, 10, 21, 22.\n"
+    puts "Where will you place your marker #{name}?\n\n"
+    puts "Select a location using the axis coordinates. For example 00, 01, 10, 21, 22.\n\n"
     @position = gets.chomp
   end
 
@@ -47,10 +49,13 @@ class GameBoard
     if game_board[@row][@column].nil?
       return true
     elsif game_board[@row][@column] == marker1 || game_board[@row][@column] == marker2
-      puts "That space is occupied, please select another location.\n"
+      puts "That space is occupied, please select another location.\n\n"
       return false
     end
+  end
 
+  def board_full?(marker1, marker2)
+    game_board.all? { |spot| spot = marker1 || spot = marker2 }
   end
 
   def victory?(name, marker)
