@@ -3,7 +3,7 @@ class GameBoard
 
   def initialize
     @game_board = []
-    @victory= false
+    @victory = false
     @position = nil
   end
 
@@ -18,18 +18,6 @@ class GameBoard
     @column = coord_array[1].to_i
   end
 
-  def get_position(name)
-    puts "Where will you place your marker #{name}?"
-    puts "Select a location using the axis coordinates. For example 00, 01, 10, 21, 22."
-    position = gets.chomp
-  end
-
-  def place_marker(name, coords, marker)
-    create_coord_array(coords)
-    move_is_valid?(name, coords, marker)
-    @game_board[@row][@column] = marker
-  end
-
   def display_board
     puts '|=====================|'
     puts '|=====TIC TAC TOE=====|'
@@ -42,46 +30,47 @@ class GameBoard
     puts "   2    #{@game_board[2][0]} | #{@game_board[2][1]} | #{@game_board[2][2]} "
   end
 
-  def move_is_valid?(name, coord, marker)
-    placed_move = false
-    while placed_move == false
-      create_coord_array(coords)
-      if @game_board[@row][@column].nil?
-        position
-        placed_move = true
-      elsif game_board[@row][@column] = marker
-        puts "This space is occupied. Select another location."
-        get_position(name)
-        place_marker(name, coords, marker)
-      end
-    end
+  def get_position(name)
+    puts "Where will you place your marker #{name}?"
+    puts 'Select a location using the axis coordinates. For example 00, 01, 10, 21, 22.'
+    @position = gets.chomp
+  end
+
+  def place_marker(name, coords, marker)
+    create_coord_array(coords)
+    move_is_valid?(name, coords, marker)
+    @game_board[@row][@column] = marker
+  end
+
+  def move_is_valid?(name, coords, marker)
+
   end
 
   def victory?(name, marker)
-      if (@game_board[0][0] == marker) && (@game_board[0][1]== marker) && (@game_board[0][2] == marker)
-        @victory = true
-        puts "#{name}, you won!"
-      elsif (@game_board[1][0] == marker) && (@game_board[1][1] == marker) && (@game_board[1][2] == marker)
-        @victory = true
-        puts "#{name}, you won!"
-      elsif (@game_board[2][0] == marker) && (@game_board[2][1] == marker) && (@game_board[2][2] == marker)
-        @victory = true
-        puts "#{name}, you won!"
-      elsif (@game_board[0][0] == marker) && (@game_board[1][0] == marker) && (@game_board[2][1] == marker)
-        @victory = true
-        puts "#{name}, you won!"
-      elsif (@game_board[0][1] == marker) && (@game_board[1][1] == marker) && (@game_board[2][1] == marker)
-        @victory = true
-        puts "#{name}, you won!"
-      elsif (@game_board[0][2] == marker) && (@game_board[1][2] == marker) && (@game_board[2][2] == marker)
-        @victory = true
-        puts "#{name}, you won!"
-      elsif (@game_board[0][0] == marker) && (@game_board[1][1] == marker) && (@game_board[2][2] == marker)
-        @victory = true
-        puts "#{name}, you won!"
-      elsif (@game_board[0][2] == marker) && (@game_board[1][1] == marker) && (@game_board[2][0] == marker)
-        @victory = true
-        puts "#{name}, you won!"
-      end
+    if (@game_board[0][0] == marker) && (@game_board[0][1] == marker) && (@game_board[0][2] == marker)
+      @victory = true
+      puts "#{name}, you won!"
+    elsif (@game_board[1][0] == marker) && (@game_board[1][1] == marker) && (@game_board[1][2] == marker)
+      @victory = true
+      puts "#{name}, you won!"
+    elsif (@game_board[2][0] == marker) && (@game_board[2][1] == marker) && (@game_board[2][2] == marker)
+      @victory = true
+      puts "#{name}, you won!"
+    elsif (@game_board[0][0] == marker) && (@game_board[1][0] == marker) && (@game_board[2][1] == marker)
+      @victory = true
+      puts "#{name}, you won!"
+    elsif (@game_board[0][1] == marker) && (@game_board[1][1] == marker) && (@game_board[2][1] == marker)
+      @victory = true
+      puts "#{name}, you won!"
+    elsif (@game_board[0][2] == marker) && (@game_board[1][2] == marker) && (@game_board[2][2] == marker)
+      @victory = true
+      puts "#{name}, you won!"
+    elsif (@game_board[0][0] == marker) && (@game_board[1][1] == marker) && (@game_board[2][2] == marker)
+      @victory = true
+      puts "#{name}, you won!"
+    elsif (@game_board[0][2] == marker) && (@game_board[1][1] == marker) && (@game_board[2][0] == marker)
+      @victory = true
+      puts "#{name}, you won!"
+    end
   end
 end

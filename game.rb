@@ -36,19 +36,19 @@ class Game
     board.create_board
 
     loop do
-      # binding.pry
+     binding.pry
       board.display_board
-      player1.get_position(player1.name)
-      board.place_marker(player1.position, player1.marker)
+      board.get_position(player1.name)
+      board.place_marker(player1.name, board.position, player1.marker)
       board.display_board
       board.victory?(player1.name, player1.marker)
       if board.victory == true
         board.display_board
         break
       end
-      board.display_board
-      player2.get_position(player2.name)
-      board.place_marker(player2.position, player2.marker)
+      # binding.pry
+      board.get_position(player2.name)
+      board.place_marker(player2.name, board.position, player2.marker)
       board.victory?(player2.name, player2.marker)
       break if board.victory == true
     end
